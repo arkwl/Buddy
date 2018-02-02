@@ -13,6 +13,7 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    var bubbleNode: SCNNode!
     
     var animations = [String: CAAnimation]()
     var idle:Bool = true
@@ -32,7 +33,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
+        bubbleNode = createBubble()
         loadAnimations()
+        addBubble()
     }
     
     func loadAnimations () {
@@ -86,8 +89,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if hitResults.first != nil {
             if(idle) {
                 playAnimation(key: "dancing")
+                bubbleScaleUp()
             } else {
                 stopAnimation(key: "dancing")
+                bubbleScaleDown()
             }
             idle = !idle
             return
@@ -103,6 +108,43 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Stop the animation with a smooth transition
         sceneView.scene.rootNode.removeAnimation(forKey: key, blendOutDuration: CGFloat(0.5))
     }
+    
+    
+    
+    
+    
+    func bubbleScaleUp (){
+        bubbleNode.scale = SCNVector3(x: 8, y: 8, z: 1)
+    }
+    
+    func bubbleScaleDown (){
+        //bubbleNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
+        bubbleNode.scale = SCNVector3(x: 0.125, y: 0.125, z: 1)
+    }
+    
+    func addBubble() {
+        bubbleNode.position = SCNVector3(0, 0, -0.2)
+        sceneView.scene.rootNode.addChildNode(bubbleNode)
+    }
+    
+    func createBubble() -> SCNNode{
+        //let geometry = SCNPlane(width: 0.1, height: 0.1)
+        let geometry = SCNPlane(width: 0.005, height: 0.005)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "art.scnassets/bubble.png")
+        geometry.materials = [material]
+        
+        return SCNNode(geometry: geometry)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
