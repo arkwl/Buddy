@@ -15,6 +15,7 @@
 		C51B4FD82022BF5E004A521D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C51B4FD62022BF5E004A521D /* LaunchScreen.storyboard */; };
 		C51B4FE32022BF5E004A521D /* OfficeBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51B4FE22022BF5E004A521D /* OfficeBuddyTests.swift */; };
 		C51B4FEE2022BF5E004A521D /* OfficeBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51B4FED2022BF5E004A521D /* OfficeBuddyUITests.swift */; };
+		C525AF2C20255388004CFED5 /* SKMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525AF2B20255388004CFED5 /* SKMultilineLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C51B4FE92022BF5E004A521D /* OfficeBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OfficeBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51B4FED2022BF5E004A521D /* OfficeBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeBuddyUITests.swift; sourceTree = "<group>"; };
 		C51B4FEF2022BF5E004A521D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C525AF2B20255388004CFED5 /* SKMultilineLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				C51B4FD42022BF5E004A521D /* Assets.xcassets */,
 				C51B4FD62022BF5E004A521D /* LaunchScreen.storyboard */,
 				C51B4FD92022BF5E004A521D /* Info.plist */,
+				C525AF2B20255388004CFED5 /* SKMultilineLabel.swift */,
 			);
 			path = OfficeBuddy;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			files = (
 				C51B4FD02022BF5E004A521D /* ViewController.swift in Sources */,
 				C51B4FCC2022BF5E004A521D /* AppDelegate.swift in Sources */,
+				C525AF2C20255388004CFED5 /* SKMultilineLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

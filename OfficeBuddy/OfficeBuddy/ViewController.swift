@@ -14,6 +14,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     var bubbleNode: SCNNode!
+    var textNode: SCNNode!
+    var positivities: [String] = ["you can do it", "im proud of you", "keep moving forward", "dont let anything stop you"]
     
     var animations = [String: CAAnimation]()
     var idle:Bool = true
@@ -90,9 +92,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             if(idle) {
                 playAnimation(key: "dancing")
                 bubbleScaleUp()
+                textNode = createText()
+                addText()
             } else {
                 stopAnimation(key: "dancing")
                 bubbleScaleDown()
+                textNode.removeFromParentNode()
             }
             idle = !idle
             return
@@ -110,11 +115,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     
-    
-    
-    
+
     func bubbleScaleUp (){
-        bubbleNode.scale = SCNVector3(x: 8, y: 8, z: 1)
+        //bubbleNode.scale = SCNVector3(x: 8, y: 8, z: 1)
+        bubbleNode.scale = SCNVector3(x: 150, y: 150, z: 1)
+        //addTextToBubble()
     }
     
     func bubbleScaleDown (){
@@ -123,7 +128,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addBubble() {
-        bubbleNode.position = SCNVector3(0, 0, -0.2)
+        bubbleNode.position = SCNVector3(0, 0, -2)
         sceneView.scene.rootNode.addChildNode(bubbleNode)
     }
     
@@ -139,7 +144,57 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     
+    func textScaleUp (){
+        //bubbleNode.scale = SCNVector3(x: 8, y: 8, z: 1)
+        textNode.scale = SCNVector3(x: 150, y: 150, z: 1)
+        //addTextToBubble()
+    }
     
+    func textScaleDown (){
+        //bubbleNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
+        textNode.scale = SCNVector3(x: 0.125, y: 0.125, z: 1)
+    }
+    
+    func addText() {
+        textNode.position = SCNVector3(0, 0, -1.5)
+        sceneView.scene.rootNode.addChildNode(textNode)
+    }
+    
+    func createText() -> SCNNode{
+        let geometry = SCNPlane(width: 0.4, height: 0.4)
+        //let geometry = SCNPlane(width: 0.005, height: 0.005)
+        
+        
+        let skScene = SKScene(size: CGSize(width: 200, height: 200))
+        skScene.backgroundColor = UIColor.clear
+        
+        //let rectangle = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 200, height: 200))
+        //rectangle.lineWidth = 5
+        //rectangle.alpha = 0.4
+        //let labelNode = SKLabelNode(text: "bush did 9/11 \n lololol")
+        let labelNode = SKMultilineLabel(text: goodText(), labelWidth: 200,  pos: CGPoint(x: 0, y: 80), fontName:"Helvetica-Light", fontSize:CGFloat(35))
+        labelNode.fontColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        //labelNode.fontName = "San Fransisco"
+        labelNode.position = CGPoint(x:100,y:100)
+        //skScene.addChild(multiLabel)
+        skScene.addChild(labelNode)
+        
+        let material = SCNMaterial()
+        material.diffuse.contents = skScene
+        material.diffuse.contentsTransform = SCNMatrix4Translate(SCNMatrix4MakeScale(-1, 1, 1), 1, 0, 0)
+        material.diffuse.contentsTransform = SCNMatrix4Translate(SCNMatrix4MakeScale(1, -1, 1), 0, 1, 0)
+        
+        geometry.materials = [material]
+        
+        return SCNNode(geometry: geometry)
+    }
+    
+    
+    
+    func goodText() -> String{
+        let randomNumber = Int(arc4random_uniform(UInt32(positivities.count)))
+        return positivities[randomNumber]
+    }
     
     
     
@@ -171,13 +226,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // MARK: - ARSCNViewDelegate
     
 /*
-    // Override to create and configure nodes for anchors added to the view's session.
+    // Override to create and configure nodes for anchors added to the view's session.*/
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
      
         return node
     }
-*/
+
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
