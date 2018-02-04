@@ -38,6 +38,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         bubbleNode = createBubble()
         loadAnimations()
         addBubble()
+        
+        //Adding buttons programatically over ARSCNView
+        let button = UIButton()
+        button.frame = CGRect(x:320, y:35, width:80, height:20)
+        button.setTitle("Settings", for: [])
+        button.setTitleColor(UIColor.white, for: [])
+        sceneView.addSubview(button)
+        
+        /*
+        let imageName = "yourImage.png"
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 35, y: 35, width: 200, height: 100)
+        sceneView.addSubview(imageView)
+        */
+        
     }
     
     func loadAnimations () {
@@ -115,6 +131,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     
+    
+    
+    
+    
+    
+    
+    
+    
 
     func bubbleScaleUp (){
         //bubbleNode.scale = SCNVector3(x: 8, y: 8, z: 1)
@@ -141,6 +165,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         return SCNNode(geometry: geometry)
     }
+    
+    
+    
+    
     
     
     
