@@ -46,13 +46,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         button.setTitleColor(UIColor.white, for: [])
         sceneView.addSubview(button)
         
-        /*
-        let imageName = "yourImage.png"
-        let image = UIImage(named: imageName)
+        let image = UIImage(named: "art.scnassets/logo.png")
         let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: 35, y: 35, width: 200, height: 100)
+        imageView.frame = CGRect(x: 20, y: 35, width: 200, height: 40)
         sceneView.addSubview(imageView)
-        */
+ 
         
     }
     
@@ -160,7 +158,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //let geometry = SCNPlane(width: 0.1, height: 0.1)
         let geometry = SCNPlane(width: 0.005, height: 0.005)
         let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "art.scnassets/bubble.png")
+        material.diffuse.contents = UIImage(named: "art.scnassets/bubble2.png")
         geometry.materials = [material]
         
         return SCNNode(geometry: geometry)
