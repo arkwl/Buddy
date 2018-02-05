@@ -16,6 +16,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var bubbleNode: SCNNode!
     var textNode: SCNNode!
     var positivities: [String] = ["you can do it", "im proud of you", "keep moving forward", "dont let anything stop you"]
+    var positivities2: [String] = ["Love yourself. It is important to stay positive because beauty comes from the inside out.", "Your positive action combined with positive thinking results in success.","Yesterday is not ours to recover, but tomorrow is ours to win or lose.", "Keep your face to the sunshine and you cannot see a shadow.", "You're pretty great!","Adopting the right attitude can convert a negative stress into a positive one.", "Every day brings new choices.", "It's amazing. Life changes very quickly, in a very positive way, if you let it."
+    ]
     
     var animations = [String: CAAnimation]()
     var idle:Bool = true
@@ -102,7 +104,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let hitResults: [SCNHitTestResult]  = sceneView.hitTest(location, options: hitTestOptions)
         
+        
+        
+        
+        
         if hitResults.first != nil {
+            if hitResults.first?.node.name == bubbleNode.name || ( textNode != nil && hitResults.first?.node.name == textNode.name) {
+                //if (hitResults.first?.node.name == textNode.name){
+                    performSegue(withIdentifier: "mySegueID", sender: nil)
+                //}
+            }
+            else {
+            
             if(idle) {
                 playAnimation(key: "dancing")
                 bubbleScaleUp()
@@ -115,6 +128,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             }
             idle = !idle
             return
+            }
         }
     }
     
@@ -151,6 +165,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func addBubble() {
         bubbleNode.position = SCNVector3(0, 0, -2)
+        bubbleNode.name = "bubble"
         sceneView.scene.rootNode.addChildNode(bubbleNode)
     }
     
@@ -183,6 +198,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func addText() {
         textNode.position = SCNVector3(0, 0, -1.5)
+        textNode.name = "text"
         sceneView.scene.rootNode.addChildNode(textNode)
     }
     
@@ -198,7 +214,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //rectangle.lineWidth = 5
         //rectangle.alpha = 0.4
         //let labelNode = SKLabelNode(text: "bush did 9/11 \n lololol")
-        let labelNode = SKMultilineLabel(text: goodText(), labelWidth: 200,  pos: CGPoint(x: 0, y: 80), fontName:"Helvetica-Light", fontSize:CGFloat(35))
+        let labelNode = SKMultilineLabel(text: goodText(), labelWidth: 200,  pos: CGPoint(x: 0, y: 80), fontName:"Helvetica-Light", fontSize:CGFloat(20))
         labelNode.fontColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         //labelNode.fontName = "San Fransisco"
         labelNode.position = CGPoint(x:100,y:100)
@@ -219,7 +235,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func goodText() -> String{
         let randomNumber = Int(arc4random_uniform(UInt32(positivities.count)))
-        return positivities[randomNumber]
+        return positivities2[randomNumber]
     }
     
     
