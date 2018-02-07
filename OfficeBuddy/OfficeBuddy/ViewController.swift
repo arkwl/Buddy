@@ -58,7 +58,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func loadAnimations () {
         // Load the character in the idle animation
-        let idleScene = SCNScene(named: "art.scnassets/idleFixed.dae")!
+        let idleScene = SCNScene(named: "art.scnassets/bounceFixed.dae")!
         
         // This node will be parent of all the animation models
         let node = SCNNode()
@@ -70,13 +70,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set up some properties
         node.position = SCNVector3(0, -1, -2)
-        node.scale = SCNVector3(0.005, 0.005, 0.005)
+        node.scale = SCNVector3(0.1, 0.1, 0.1)
+        
+        let forward = SCNAction.moveBy(x:CGFloat(node.worldTransform.m31), y:CGFloat(node.worldTransform.m32), z:CGFloat(node.worldTransform.m33)*2, duration:4)
+        let rotate = SCNAction.rotate(by: CGFloat(0.40), around: SCNVector3(x:0, y:1, z:0), duration: 3)
+        forward.timingMode = .easeInEaseOut
+        rotate.timingMode = .easeInEaseOut
+        //let moveSequence = SCNAction.sequence([forward,rotate])
+        //let moveLoop = SCNAction.repeatForever(moveSequence)
+        //node.runAction(moveLoop)
+        
+        node.runAction(rotate)
+        node.runAction(rotate)
+        let moveLoop = SCNAction.repeatForever(forward)
+        node.runAction(moveLoop)
         
         // Add the node to the scene
         sceneView.scene.rootNode.addChildNode(node)
         
         // Load all the DAE animations
-        loadAnimation(withKey: "dancing", sceneName: "art.scnassets/sambaFixed", animationIdentifier: "sambaFixed-1")
+        loadAnimation(withKey: "excited", sceneName: "art.scnassets/excited1Fixed", animationIdentifier: "excited1Fixed-1")
     }
     
     func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
@@ -117,12 +130,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             else {
             
             if(idle) {
-                playAnimation(key: "dancing")
+                playAnimation(key: "excited")
                 bubbleScaleUp()
                 textNode = createText()
                 addText()
             } else {
-                stopAnimation(key: "dancing")
+                stopAnimation(key: "excited")
                 bubbleScaleDown()
                 textNode.removeFromParentNode()
             }
