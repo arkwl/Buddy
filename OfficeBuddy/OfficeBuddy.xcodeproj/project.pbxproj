@@ -17,6 +17,7 @@
 		C51B4FEE2022BF5E004A521D /* OfficeBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51B4FED2022BF5E004A521D /* OfficeBuddyUITests.swift */; };
 		C525AF2C20255388004CFED5 /* SKMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525AF2B20255388004CFED5 /* SKMultilineLabel.swift */; };
 		C525AF2E202AA441004CFED5 /* icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C525AF2D202AA440004CFED5 /* icon.jpg */; };
+		C525AF32202AC803004CFED5 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525AF31202AC803004CFED5 /* MessageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		C51B4FEF2022BF5E004A521D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C525AF2B20255388004CFED5 /* SKMultilineLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
 		C525AF2D202AA440004CFED5 /* icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon.jpg; sourceTree = "<group>"; };
+		C525AF31202AC803004CFED5 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				C51B4FCB2022BF5E004A521D /* AppDelegate.swift */,
 				C51B4FCD2022BF5E004A521D /* art.scnassets */,
 				C51B4FCF2022BF5E004A521D /* ViewController.swift */,
+				C525AF31202AC803004CFED5 /* MessageViewController.swift */,
 				C51B4FD12022BF5E004A521D /* Main.storyboard */,
 				C51B4FD42022BF5E004A521D /* Assets.xcassets */,
 				C525AF2D202AA440004CFED5 /* icon.jpg */,
@@ -272,6 +275,7 @@
 			files = (
 				C51B4FD02022BF5E004A521D /* ViewController.swift in Sources */,
 				C51B4FCC2022BF5E004A521D /* AppDelegate.swift in Sources */,
+				C525AF32202AC803004CFED5 /* MessageViewController.swift in Sources */,
 				C525AF2C20255388004CFED5 /* SKMultilineLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -72,17 +72,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         node.position = SCNVector3(0, -1, -2)
         node.scale = SCNVector3(0.1, 0.1, 0.1)
         
+        //ANIMATIONS FOR IDLE
+        //TODO:// edit the forward animation to move in it's directon
         let forward = SCNAction.moveBy(x:CGFloat(node.worldTransform.m31), y:CGFloat(node.worldTransform.m32), z:CGFloat(node.worldTransform.m33)*2, duration:4)
-        let rotate = SCNAction.rotate(by: CGFloat(0.40), around: SCNVector3(x:0, y:1, z:0), duration: 3)
+        let rotate = SCNAction.rotate(by: CGFloat(0.88), around: SCNVector3(x:0, y:1, z:0), duration: 2)
         forward.timingMode = .easeInEaseOut
         rotate.timingMode = .easeInEaseOut
-        //let moveSequence = SCNAction.sequence([forward,rotate])
-        //let moveLoop = SCNAction.repeatForever(moveSequence)
-        //node.runAction(moveLoop)
-        
-        node.runAction(rotate)
-        node.runAction(rotate)
-        let moveLoop = SCNAction.repeatForever(forward)
+        let moveSequence = SCNAction.sequence([forward,rotate])
+        let moveLoop = SCNAction.repeatForever(moveSequence)
         node.runAction(moveLoop)
         
         // Add the node to the scene
@@ -117,10 +114,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let hitResults: [SCNHitTestResult]  = sceneView.hitTest(location, options: hitTestOptions)
         
-        
-        
-        
-        
         if hitResults.first != nil {
             if hitResults.first?.node.name == bubbleNode.name || ( textNode != nil && hitResults.first?.node.name == textNode.name) {
                 //if (hitResults.first?.node.name == textNode.name){
@@ -154,7 +147,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Stop the animation with a smooth transition
         sceneView.scene.rootNode.removeAnimation(forKey: key, blendOutDuration: CGFloat(0.5))
     }
+
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "mySegueID") {
+            //let vc = segue.destination as! MessageViewController
+            
+            if let destinationViewController = segue.destination as? MessageViewController {
+                destinationViewController.message = "Hi friend"
+            }
+        }
+    }
     
     
     

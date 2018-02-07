@@ -34,7 +34,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
-                        <segue destination="LwT-0I-NfD" kind="show" identifier="mySegueID" id="hUh-cb-3cB"/>
+                        <segue destination="LwT-0I-NfD" kind="show" identifier="mySegueID" id="Klo-IS-2Gu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -45,12 +45,12 @@
                 </button>
                 <tapGestureRecognizer id="0yI-KD-KiQ"/>
             </objects>
-            <point key="canvasLocation" x="839" y="93"/>
+            <point key="canvasLocation" x="711" y="93"/>
         </scene>
-        <!--View Controller-->
+        <!--Message View Controller-->
         <scene sceneID="aNQ-VJ-0uy">
             <objects>
-                <viewController id="LwT-0I-NfD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageViewController" id="LwT-0I-NfD" customClass="MessageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BVe-O9-9Sn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
