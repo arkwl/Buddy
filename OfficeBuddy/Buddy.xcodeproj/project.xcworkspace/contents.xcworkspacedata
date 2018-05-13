@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:OfficeBuddy.xcodeproj">
+      location = "self:/Users/arkwl/Desktop/Workstation/OfficeBuddy/OfficeBuddy/Buddy.xcodeproj">
    </FileRef>
 </Workspace>

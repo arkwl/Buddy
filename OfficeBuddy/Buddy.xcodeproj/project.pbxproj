@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1D8EF0320422B53005AB81D /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D8EF0220422B53005AB81D /* MessageGenerator.swift */; };
+		B1D8EF05204263C0005AB81D /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B1D8EF04204263C0005AB81D /* data.json */; };
 		C51B4FCC2022BF5E004A521D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51B4FCB2022BF5E004A521D /* AppDelegate.swift */; };
 		C51B4FCE2022BF5E004A521D /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C51B4FCD2022BF5E004A521D /* art.scnassets */; };
 		C51B4FD02022BF5E004A521D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51B4FCF2022BF5E004A521D /* ViewController.swift */; };
@@ -38,7 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C51B4FC82022BF5E004A521D /* OfficeBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OfficeBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1D8EF0220422B53005AB81D /* MessageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
+		B1D8EF04204263C0005AB81D /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		C51B4FC82022BF5E004A521D /* Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51B4FCB2022BF5E004A521D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C51B4FCD2022BF5E004A521D /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		C51B4FCF2022BF5E004A521D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,10 +50,10 @@
 		C51B4FD42022BF5E004A521D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C51B4FD72022BF5E004A521D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C51B4FD92022BF5E004A521D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C51B4FDE2022BF5E004A521D /* OfficeBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OfficeBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C51B4FDE2022BF5E004A521D /* BuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51B4FE22022BF5E004A521D /* OfficeBuddyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeBuddyTests.swift; sourceTree = "<group>"; };
 		C51B4FE42022BF5E004A521D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C51B4FE92022BF5E004A521D /* OfficeBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OfficeBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C51B4FE92022BF5E004A521D /* BuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51B4FED2022BF5E004A521D /* OfficeBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeBuddyUITests.swift; sourceTree = "<group>"; };
 		C51B4FEF2022BF5E004A521D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C525AF2B20255388004CFED5 /* SKMultilineLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
@@ -95,9 +99,9 @@
 		C51B4FC92022BF5E004A521D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C51B4FC82022BF5E004A521D /* OfficeBuddy.app */,
-				C51B4FDE2022BF5E004A521D /* OfficeBuddyTests.xctest */,
-				C51B4FE92022BF5E004A521D /* OfficeBuddyUITests.xctest */,
+				C51B4FC82022BF5E004A521D /* Buddy.app */,
+				C51B4FDE2022BF5E004A521D /* BuddyTests.xctest */,
+				C51B4FE92022BF5E004A521D /* BuddyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +109,7 @@
 		C51B4FCA2022BF5E004A521D /* OfficeBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				B1D8EF04204263C0005AB81D /* data.json */,
 				C51B4FCB2022BF5E004A521D /* AppDelegate.swift */,
 				C51B4FCD2022BF5E004A521D /* art.scnassets */,
 				C51B4FCF2022BF5E004A521D /* ViewController.swift */,
@@ -115,6 +120,7 @@
 				C51B4FD62022BF5E004A521D /* LaunchScreen.storyboard */,
 				C51B4FD92022BF5E004A521D /* Info.plist */,
 				C525AF2B20255388004CFED5 /* SKMultilineLabel.swift */,
+				B1D8EF0220422B53005AB81D /* MessageGenerator.swift */,
 			);
 			path = OfficeBuddy;
 			sourceTree = "<group>";
@@ -140,9 +146,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C51B4FC72022BF5E004A521D /* OfficeBuddy */ = {
+		C51B4FC72022BF5E004A521D /* Buddy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C51B4FF22022BF5E004A521D /* Build configuration list for PBXNativeTarget "OfficeBuddy" */;
+			buildConfigurationList = C51B4FF22022BF5E004A521D /* Build configuration list for PBXNativeTarget "Buddy" */;
 			buildPhases = (
 				C51B4FC42022BF5E004A521D /* Sources */,
 				C51B4FC52022BF5E004A521D /* Frameworks */,
@@ -152,14 +158,14 @@
 			);
 			dependencies = (
 			);
-			name = OfficeBuddy;
+			name = Buddy;
 			productName = OfficeBuddy;
-			productReference = C51B4FC82022BF5E004A521D /* OfficeBuddy.app */;
+			productReference = C51B4FC82022BF5E004A521D /* Buddy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C51B4FDD2022BF5E004A521D /* OfficeBuddyTests */ = {
+		C51B4FDD2022BF5E004A521D /* BuddyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C51B4FF52022BF5E004A521D /* Build configuration list for PBXNativeTarget "OfficeBuddyTests" */;
+			buildConfigurationList = C51B4FF52022BF5E004A521D /* Build configuration list for PBXNativeTarget "BuddyTests" */;
 			buildPhases = (
 				C51B4FDA2022BF5E004A521D /* Sources */,
 				C51B4FDB2022BF5E004A521D /* Frameworks */,
@@ -170,14 +176,14 @@
 			dependencies = (
 				C51B4FE02022BF5E004A521D /* PBXTargetDependency */,
 			);
-			name = OfficeBuddyTests;
+			name = BuddyTests;
 			productName = OfficeBuddyTests;
-			productReference = C51B4FDE2022BF5E004A521D /* OfficeBuddyTests.xctest */;
+			productReference = C51B4FDE2022BF5E004A521D /* BuddyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C51B4FE82022BF5E004A521D /* OfficeBuddyUITests */ = {
+		C51B4FE82022BF5E004A521D /* BuddyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C51B4FF82022BF5E004A521D /* Build configuration list for PBXNativeTarget "OfficeBuddyUITests" */;
+			buildConfigurationList = C51B4FF82022BF5E004A521D /* Build configuration list for PBXNativeTarget "BuddyUITests" */;
 			buildPhases = (
 				C51B4FE52022BF5E004A521D /* Sources */,
 				C51B4FE62022BF5E004A521D /* Frameworks */,
@@ -188,9 +194,9 @@
 			dependencies = (
 				C51B4FEB2022BF5E004A521D /* PBXTargetDependency */,
 			);
-			name = OfficeBuddyUITests;
+			name = BuddyUITests;
 			productName = OfficeBuddyUITests;
-			productReference = C51B4FE92022BF5E004A521D /* OfficeBuddyUITests.xctest */;
+			productReference = C51B4FE92022BF5E004A521D /* BuddyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -219,7 +225,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C51B4FC32022BF5D004A521D /* Build configuration list for PBXProject "OfficeBuddy" */;
+			buildConfigurationList = C51B4FC32022BF5D004A521D /* Build configuration list for PBXProject "Buddy" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -232,9 +238,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C51B4FC72022BF5E004A521D /* OfficeBuddy */,
-				C51B4FDD2022BF5E004A521D /* OfficeBuddyTests */,
-				C51B4FE82022BF5E004A521D /* OfficeBuddyUITests */,
+				C51B4FC72022BF5E004A521D /* Buddy */,
+				C51B4FDD2022BF5E004A521D /* BuddyTests */,
+				C51B4FE82022BF5E004A521D /* BuddyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -245,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C51B4FCE2022BF5E004A521D /* art.scnassets in Resources */,
+				B1D8EF05204263C0005AB81D /* data.json in Resources */,
 				C525AF2E202AA441004CFED5 /* icon.jpg in Resources */,
 				C51B4FD82022BF5E004A521D /* LaunchScreen.storyboard in Resources */,
 				C51B4FD52022BF5E004A521D /* Assets.xcassets in Resources */,
@@ -274,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C51B4FD02022BF5E004A521D /* ViewController.swift in Sources */,
+				B1D8EF0320422B53005AB81D /* MessageGenerator.swift in Sources */,
 				C51B4FCC2022BF5E004A521D /* AppDelegate.swift in Sources */,
 				C525AF32202AC803004CFED5 /* MessageViewController.swift in Sources */,
 				C525AF2C20255388004CFED5 /* SKMultilineLabel.swift in Sources */,
@@ -301,12 +309,12 @@
 /* Begin PBXTargetDependency section */
 		C51B4FE02022BF5E004A521D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C51B4FC72022BF5E004A521D /* OfficeBuddy */;
+			target = C51B4FC72022BF5E004A521D /* Buddy */;
 			targetProxy = C51B4FDF2022BF5E004A521D /* PBXContainerItemProxy */;
 		};
 		C51B4FEB2022BF5E004A521D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C51B4FC72022BF5E004A521D /* OfficeBuddy */;
+			target = C51B4FC72022BF5E004A521D /* Buddy */;
 			targetProxy = C51B4FEA2022BF5E004A521D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -443,10 +451,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FTZRN57499;
+				DEVELOPMENT_TEAM = YUW3JBUCLP;
 				INFOPLIST_FILE = OfficeBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = alexa.OfficeBuddyv1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = alexa.OfficeBuddyv1.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,10 +466,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FTZRN57499;
+				DEVELOPMENT_TEAM = YUW3JBUCLP;
 				INFOPLIST_FILE = OfficeBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = alexa.OfficeBuddyv1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = alexa.OfficeBuddyv1.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -481,7 +489,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OfficeBuddy.app/OfficeBuddy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Buddy.app/Buddy";
 			};
 			name = Debug;
 		};
@@ -498,7 +506,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OfficeBuddy.app/OfficeBuddy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Buddy.app/Buddy";
 			};
 			name = Release;
 		};
@@ -537,7 +545,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C51B4FC32022BF5D004A521D /* Build configuration list for PBXProject "OfficeBuddy" */ = {
+		C51B4FC32022BF5D004A521D /* Build configuration list for PBXProject "Buddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C51B4FF02022BF5E004A521D /* Debug */,
@@ -546,7 +554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C51B4FF22022BF5E004A521D /* Build configuration list for PBXNativeTarget "OfficeBuddy" */ = {
+		C51B4FF22022BF5E004A521D /* Build configuration list for PBXNativeTarget "Buddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C51B4FF32022BF5E004A521D /* Debug */,
@@ -555,7 +563,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C51B4FF52022BF5E004A521D /* Build configuration list for PBXNativeTarget "OfficeBuddyTests" */ = {
+		C51B4FF52022BF5E004A521D /* Build configuration list for PBXNativeTarget "BuddyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C51B4FF62022BF5E004A521D /* Debug */,
@@ -564,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C51B4FF82022BF5E004A521D /* Build configuration list for PBXNativeTarget "OfficeBuddyUITests" */ = {
+		C51B4FF82022BF5E004A521D /* Build configuration list for PBXNativeTarget "BuddyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C51B4FF92022BF5E004A521D /* Debug */,
