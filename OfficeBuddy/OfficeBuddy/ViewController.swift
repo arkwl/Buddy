@@ -14,8 +14,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
-    var bubbleNode: SCNNode!
-    var textNode: SCNNode!
+    var activeAnchor: ARPlaneAnchor!
     
     
     var animations = [String: CAAnimation]()
@@ -34,83 +33,38 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
-        //load animations for buddy
-        loadAnimations()
-        
-        
-        
-        
-        /*
-         //how images are added dynamically to the ARSceneView
-        let image = UIImage(named: "art.scnassets/logo.png")
-        let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: 20, y: 35, width: 200, height: 40)
-        sceneView.addSubview(imageView)
-        */
- 
-        
+        addTapGestureToSceneView()
     }
     
     
-    
-    
-    
-    /*
-     * HORIZONTAL PLANE DETECTION
-     */
-    func initWithAnchor(anchor:ARPlaneAnchor){
-        let planeGeometry = SCNPlane(width:CGFloat(anchor.extent.x), height:CGFloat(anchor.extent.z))
-        
-        let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "art.scnassets/tron_grid.png")
-        planeGeometry.materials = [material]
-        
-        
-        let planeNode = SCNNode(geometry: planeGeometry)
-        planeNode.position = SCNVector3(anchor.center.x, anchor.center.y, anchor.center.z)
-        planeNode.transform = SCNMatrix4MakeRotation(Float(-Double.pi / 2.0), 1.0, 0.0, 0.0)
-        //setGridTextureScale(geometry:planeGeometry)
-        
-        sceneView.scene.rootNode.addChildNode(planeNode)
-        print("it worked")
-    }
-    
-    func setGridTextureScale (geometry: SCNPlane){
-        let width = Float(geometry.width)
-        let height = Float(geometry.height)
-        
-        let material = geometry.materials.first
-        material?.diffuse.contentsTransform = SCNMatrix4MakeScale(width, height, 1)
-        material?.diffuse.wrapS = SCNWrapMode(rawValue: 2)!
-        material?.diffuse.wrapT = SCNWrapMode(rawValue: 2)!
-    }
-    
-    @objc func addObjectToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer, node: SCNNode) {
+    @objc func addObjectToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
         let tapLocation = recognizer.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         
         guard let hitTestResult = hitTestResults.first else { return }
+        
         let translation = hitTestResult.worldTransform.translation
         let x = translation.x
         let y = translation.y
         let z = translation.z
         
-        //guard let shipScene = SCNScene(named: "ship.scn"),
-        //    let shipNode = shipScene.rootNode.childNode(withName: "ship", recursively: false)
-        //    else { return }
-        
-        
-        node.position = SCNVector3(x,y,z)
-        sceneView.scene.rootNode.addChildNode(node)
+        let sphere = SCNSphere(radius: 0.03)
+        let sphereNode = SCNNode(geometry: sphere)
+        sphereNode.position = SCNVector3(x, y, z)
+
+        sceneView.scene.rootNode.addChildNode(sphereNode)
     }
     
-    
+    func addTapGestureToSceneView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addObjectToSceneView(withGestureRecognizer:)))
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
     
     
     /*
     * ANIMATIONS
     */
-    func loadAnimations () {
+    func loadBuddy () -> SCNNode {
         // Load the character in the idle animation
         //let idleScene = SCNScene(named: "art.scnassets/bounceFixed.dae")!
         let idleScene = SCNScene(named: "art.scnassets/CorgiPointCache/CorgiDirectToOpenCollada.DAE")!
@@ -126,25 +80,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set up some properties
         node.name = "Buddy"
-        node.position = SCNVector3(0, -1, -2)
-        node.scale = SCNVector3(0.01, 0.01, 0.01)
-        
-        //ANIMATIONS FOR IDLE
-        //TODO:// edit the forward animation to move in it's directon
-        let forward = SCNAction.moveBy(x: 0, y: 0, z: 0.00025, duration: 4)
-        //let forward = SCNAction.move(to: SCNVector3(x:0, y:0, z:0.00025), duration: 4)
-        let rotate = SCNAction.rotate(by: CGFloat(0.88), around: SCNVector3(x:0, y:1, z:0), duration: 2)
-        forward.timingMode = .easeInEaseOut
-        rotate.timingMode = .easeInEaseOut
-        let moveSequence = SCNAction.sequence([forward,rotate])
-        let moveLoop = SCNAction.repeatForever(moveSequence)
-        node.runAction(moveLoop)
-        
-        // Add the node to the scene
-        sceneView.scene.rootNode.addChildNode(node)
+        node.position = SCNVector3(0, 0, 0)
+        node.scale = SCNVector3(0.005, 0.005, 0.005)
         
         // Load all the DAE animations
         loadAnimation(withKey: "excited", sceneName: "art.scnassets/excited1Fixed", animationIdentifier: "excited1Fixed-1")
+        
+        return node
     }
     
     func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
@@ -205,8 +147,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
 
-    
-    
     //function used to pass information through segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "mySegueID") {
@@ -217,11 +157,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             }
         }
     }
-    
-    
-    
-    
-    
     
     
     func addActionButtons() {
@@ -259,104 +194,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         print("tapped")
         performSegue(withIdentifier: "mySegueID", sender: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // DEPRICATED
-    
-    /*
-
-    func bubbleScaleUp (){
-        //bubbleNode.scale = SCNVector3(x: 8, y: 8, z: 1)
-        bubbleNode.scale = SCNVector3(x: 150, y: 150, z: 1)
-        //addTextToBubble()
-    }
-    
-    func bubbleScaleDown (){
-        //bubbleNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
-        bubbleNode.scale = SCNVector3(x: 0.125, y: 0.125, z: 1)
-    }
-    
-    func addBubble() {
-        bubbleNode.position = SCNVector3(0, 0, -2)
-        bubbleNode.name = "bubble"
-        sceneView.scene.rootNode.addChildNode(bubbleNode)
-    }
-    
-    func createBubble() -> SCNNode{
-        //let geometry = SCNPlane(width: 0.1, height: 0.1)
-        let geometry = SCNPlane(width: 0.005, height: 0.005)
-        let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "art.scnassets/bubble2.png")
-        geometry.materials = [material]
-        
-        return SCNNode(geometry: geometry)
-    }
-    
-    
-    
-    
-    
-    
-    func textScaleUp (){
-        //bubbleNode.scale = SCNVector3(x: 8, y: 8, z: 1)
-        textNode.scale = SCNVector3(x: 150, y: 150, z: 1)
-        //addTextToBubble()
-    }
-    
-    func textScaleDown (){
-        //bubbleNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
-        textNode.scale = SCNVector3(x: 0.125, y: 0.125, z: 1)
-    }
-    
-    func addText() {
-        textNode.position = SCNVector3(0, 0, -1.5)
-        textNode.name = "text"
-        sceneView.scene.rootNode.addChildNode(textNode)
-    }
-    
-    func createText() -> SCNNode{
-        let geometry = SCNPlane(width: 0.4, height: 0.4)
-        //let geometry = SCNPlane(width: 0.005, height: 0.005)
-        
-        
-        let skScene = SKScene(size: CGSize(width: 200, height: 200))
-        skScene.backgroundColor = UIColor.clear
-        activeText = goodText()
-        
-        let labelNode = SKMultilineLabel(text: activeText, labelWidth: 200,  pos: CGPoint(x: 0, y: 80), fontName:"Helvetica-Light", fontSize:CGFloat(20))
-        labelNode.fontColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        //labelNode.fontName = "San Fransisco"
-        labelNode.position = CGPoint(x:100,y:100)
-        skScene.addChild(labelNode)
-        
-        let material = SCNMaterial()
-        material.diffuse.contents = skScene
-        material.diffuse.contentsTransform = SCNMatrix4Translate(SCNMatrix4MakeScale(-1, 1, 1), 1, 0, 0)
-        material.diffuse.contentsTransform = SCNMatrix4Translate(SCNMatrix4MakeScale(1, -1, 1), 0, 1, 0)
-        
-        geometry.materials = [material]
-        
-        return SCNNode(geometry: geometry)
-    }
-    
-    func goodText() -> String{
-        let randomNumber = Int(arc4random_uniform(UInt32(positivities.count)))
-        return positivities2[randomNumber]
-    }
-    */
-    
-    
-    
-    
-    
     
     
     
@@ -405,7 +242,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         planeNode.position = SCNVector3(x,y,z)
         planeNode.eulerAngles.x = -.pi / 2
         
+        node.name = "plane"
         node.addChildNode(planeNode)
+        
+        
+        let buddyNode = loadBuddy()
+        
+        buddyNode.position = SCNVector3(anchor.transform.columns.3.x, anchor.transform.columns.3.y, anchor.transform.columns.3.z)
+        
+        sceneView.scene.rootNode.addChildNode(buddyNode)
+        
+        activeAnchor = planeAnchor
+        
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
