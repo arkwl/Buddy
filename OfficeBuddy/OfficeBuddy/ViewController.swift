@@ -15,6 +15,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     
     var activeAnchor: ARPlaneAnchor!
+    var activeSphereNode: SCNNode!
+    var globalBuddyNode: SCNNode!
     
     
     var animations = [String: CAAnimation]()
@@ -53,6 +55,32 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sphereNode.position = SCNVector3(x, y, z)
 
         sceneView.scene.rootNode.addChildNode(sphereNode)
+        activeSphereNode = sphereNode
+        
+        //make buddy move to sphere
+        
+        let forward = SCNAction.move(to: activeSphereNode.position, duration: 3)
+        forward.timingMode = .easeInEaseOut
+        
+        
+        let dx = activeSphereNode.position.x - globalBuddyNode.position.x
+        let dy = activeSphereNode.position.y - globalBuddyNode.position.y
+        let dz = activeSphereNode.position.z - globalBuddyNode.position.z
+        
+        let y_angle = atan2(dx, dz)
+        //globalBuddyNode.rotation = SCNVector4(0.0, 1.0, 0.0, y_angle)
+        
+        let rotation = SCNAction.rotateTo(x: 0, y: CGFloat(y_angle), z: 0, duration: 1)
+        rotation.timingMode = .easeInEaseOut
+        
+        //let con = SCNLookAtConstraint(target: sphereNode)
+        //globalBuddyNode.constraints = [con]
+        
+        print(y_angle)
+        
+        let moveSequence = SCNAction.sequence([rotation, forward])
+        globalBuddyNode.runAction(moveSequence)
+        
     }
     
     func addTapGestureToSceneView() {
@@ -81,7 +109,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set up some properties
         node.name = "Buddy"
         node.position = SCNVector3(0, 0, 0)
-        node.scale = SCNVector3(0.005, 0.005, 0.005)
+        node.scale = SCNVector3(0.003, 0.003, 0.003)
         
         // Load all the DAE animations
         loadAnimation(withKey: "excited", sceneName: "art.scnassets/excited1Fixed", animationIdentifier: "excited1Fixed-1")
@@ -247,6 +275,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         
         let buddyNode = loadBuddy()
+        globalBuddyNode = buddyNode
         
         buddyNode.position = SCNVector3(anchor.transform.columns.3.x, anchor.transform.columns.3.y, anchor.transform.columns.3.z)
         
