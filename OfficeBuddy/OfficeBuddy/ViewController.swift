@@ -15,12 +15,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     
     var activeAnchor: ARPlaneAnchor!
-    var activeSphereNode: SCNNode!
-    var globalBuddyNode: SCNNode!
+    var globalBuddyNode: Buddy!
     
     
     var animations = [String: CAAnimation]()
     var idle:Bool = true
+    
+    var treatStack = Stack<Treat>()
     
     
     override func viewDidLoad() {
@@ -40,6 +41,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     @objc func addObjectToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
+        
+        globalBuddyNode.get().removeAllActions()
+        
         let tapLocation = recognizer.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         
@@ -50,37 +54,36 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let y = translation.y
         let z = translation.z
         
-        let sphere = SCNSphere(radius: 0.03)
-        let sphereNode = SCNNode(geometry: sphere)
-        sphereNode.position = SCNVector3(x, y, z)
+        let treat = Treat(x:x, y:y, z:z)
+        treat.setName(name: String(sceneView.scene.rootNode.childNodes.count))
 
-        sceneView.scene.rootNode.addChildNode(sphereNode)
-        activeSphereNode = sphereNode
+        print("pushed:" + treat.getName())
+        sceneView.scene.rootNode.addChildNode(treat.get())
+        treatStack.push(treat)
         
         //make buddy move to sphere
+        let moveSequence = globalBuddyNode.moveBuddyTo(node: treat)
+        globalBuddyNode.get().runAction(moveSequence, completionHandler: walkDone)
         
-        let forward = SCNAction.move(to: activeSphereNode.position, duration: 3)
-        forward.timingMode = .easeInEaseOut
+    }
+    
+    func walkDone() {
+        let poppedTreat = treatStack.pop()
+        poppedTreat?.get().removeFromParentNode()
         
         
-        let dx = activeSphereNode.position.x - globalBuddyNode.position.x
-        let dy = activeSphereNode.position.y - globalBuddyNode.position.y
-        let dz = activeSphereNode.position.z - globalBuddyNode.position.z
-        
-        let y_angle = atan2(dx, dz)
-        //globalBuddyNode.rotation = SCNVector4(0.0, 1.0, 0.0, y_angle)
-        
-        let rotation = SCNAction.rotateTo(x: 0, y: CGFloat(y_angle), z: 0, duration: 1)
-        rotation.timingMode = .easeInEaseOut
-        
-        //let con = SCNLookAtConstraint(target: sphereNode)
-        //globalBuddyNode.constraints = [con]
-        
-        print(y_angle)
-        
-        let moveSequence = SCNAction.sequence([rotation, forward])
-        globalBuddyNode.runAction(moveSequence)
-        
+        //if queue is not empty, walk to that one next
+        if treatStack.count > 0 {
+            print("popped:" + (poppedTreat?.getName())!)
+            print ("lets take care of the others")
+            
+            //make buddy move to sphere
+            let moveSequence = globalBuddyNode.moveBuddyTo(node: poppedTreat!)
+            globalBuddyNode.get().runAction(moveSequence, completionHandler: walkDone)
+        }
+        else {
+            print("none left")
+        }
     }
     
     func addTapGestureToSceneView() {
@@ -92,30 +95,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     /*
     * ANIMATIONS
     */
-    func loadBuddy () -> SCNNode {
-        // Load the character in the idle animation
-        //let idleScene = SCNScene(named: "art.scnassets/bounceFixed.dae")!
-        let idleScene = SCNScene(named: "art.scnassets/CorgiPointCache/CorgiDirectToOpenCollada.DAE")!
-        
-        
-        // This node will be parent of all the animation models
-        let node = SCNNode()
-        
-        // Add all the child nodes to the parent node
-        for child in idleScene.rootNode.childNodes {
-            node.addChildNode(child)
-        }
-        
-        // Set up some properties
-        node.name = "Buddy"
-        node.position = SCNVector3(0, 0, 0)
-        node.scale = SCNVector3(0.003, 0.003, 0.003)
-        
-        // Load all the DAE animations
-        loadAnimation(withKey: "excited", sceneName: "art.scnassets/excited1Fixed", animationIdentifier: "excited1Fixed-1")
-        
-        return node
-    }
     
     func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
         let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae")
@@ -260,7 +239,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let height = CGFloat(planeAnchor.extent.z)
         let plane = SCNPlane(width: width, height: height)
         
-        plane.materials.first?.diffuse.contents = UIColor.orange
+        plane.materials.first?.diffuse.contents = UIColor.orange //Change this to clear for the future
         
         let planeNode = SCNNode(geometry: plane)
         
@@ -270,18 +249,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         planeNode.position = SCNVector3(x,y,z)
         planeNode.eulerAngles.x = -.pi / 2
         
-        node.name = "plane"
-        node.addChildNode(planeNode)
+        // TODO: now it only
+        if (globalBuddyNode == nil) {
+            node.name = "plane"
+            node.addChildNode(planeNode)
+        
+            // Load all the DAE animations
+            loadAnimation(withKey: "excited", sceneName: "art.scnassets/excited1Fixed", animationIdentifier: "excited1Fixed-1")
+            globalBuddyNode = Buddy()
         
         
-        let buddyNode = loadBuddy()
-        globalBuddyNode = buddyNode
+            globalBuddyNode.setPosition(coor: SCNVector3(anchor.transform.columns.3.x, anchor.transform.columns.3.y, anchor.transform.columns.3.z))
         
-        buddyNode.position = SCNVector3(anchor.transform.columns.3.x, anchor.transform.columns.3.y, anchor.transform.columns.3.z)
+            sceneView.scene.rootNode.addChildNode(globalBuddyNode.get())
         
-        sceneView.scene.rootNode.addChildNode(buddyNode)
-        
-        activeAnchor = planeAnchor
+            activeAnchor = planeAnchor
+        }
         
     }
     
