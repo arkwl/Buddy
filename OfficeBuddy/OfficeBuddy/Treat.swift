@@ -14,11 +14,25 @@ import ARKit
 class Treat {
     
     let node: SCNNode
+    let radius: Float
     
     init(x: Float, y: Float, z:Float){
-        let sphere = SCNSphere(radius: 0.01)
-        let sphereNode = SCNNode(geometry: sphere)
+        
+        let sphereNode = SCNNode()
+        
+        var sphere = SCNBox(width: 0.01, height: 0.01, length: 0.01, chamferRadius: 0)
+        sphere.firstMaterial?.diffuse.contents = UIColor.purple
+        sphere.name = "purpleTreat"
+        sphereNode.addChildNode(SCNNode(geometry: sphere))
+        
+        self.radius = 0.06
+        sphere = SCNBox(width: 0.06, height: 0.06, length: 0.06, chamferRadius: 0)
+        sphere.firstMaterial?.diffuse.contents = UIColor.clear
+        sphere.name = "invisibleTreat"
+        sphereNode.addChildNode(SCNNode(geometry: sphere))
+        
         sphereNode.position = SCNVector3(x, y, z)
+        sphereNode.name = "treatParent"
         self.node = sphereNode
     }
     

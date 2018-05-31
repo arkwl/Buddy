@@ -10,19 +10,23 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate{
 
     @IBOutlet var sceneView: ARSCNView!
     
     var activeAnchor: ARPlaneAnchor!
     var globalBuddyNode: Buddy!
-    
+    var lastTreat: Treat!
     
     var animations = [String: CAAnimation]()
     var idle:Bool = true
     
     var treatStack = Stack<Treat>()
     
+    var swipeCoor = CGPoint()
+    var latestTranslatePos = CGPoint()
+    
+    var totalTreats = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,50 +39,99 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        sceneView.scene.rootNode.name = "world"
+        sceneView.scene.physicsWorld.contactDelegate = self
         
         addTapGestureToSceneView()
+        addSwipeGestureToSceneView()
     }
-    
     
     @objc func addObjectToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
         
+        if (globalBuddyNode.get().hasActions){
+            //treatStack.push(lastTreat)
+        }
         globalBuddyNode.get().removeAllActions()
+        
         
         let tapLocation = recognizer.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
         
         guard let hitTestResult = hitTestResults.first else { return }
+        print("hit result count from UIGestureRecognizer: " + String(hitTestResults.count))
+        
+        var hitTestOptions = [SCNHitTestOption: Any]()
+        hitTestOptions[SCNHitTestOption.boundingBoxOnly] = true
+        let hitResults: [SCNHitTestResult]  = sceneView.hitTest(tapLocation, options: hitTestOptions)
+        
+        //check to see what's in hitresults
+        print("")
+        print("****************** TAP DETECTED ********************")
+        print(hitTestResults) //ARHitTestResult
+        print(hitResults)     //SCNHitTestResult
         
         let translation = hitTestResult.worldTransform.translation
         let x = translation.x
         let y = translation.y
         let z = translation.z
         
+        let radius = Float(0.06)//Treat.radius - future constant
+        for node in sceneView.scene.rootNode.childNodes {
+            if (node.position.x < x + radius && node.position.x > x - radius &&
+                node.position.y < y + radius && node.position.y > y - radius &&
+                node.position.z < z + radius && node.position.z > z - radius) {
+                if (node.name == nil || node.name != "plane"){
+                    if !(node.name == "Buddy" || node.name == "Corgi") {
+                        node.removeFromParentNode()
+                    }
+                    else {
+                        //do something with Buddy
+                    }
+                }
+                return
+            }
+        }
+        
+        
         let treat = Treat(x:x, y:y, z:z)
-        treat.setName(name: String(sceneView.scene.rootNode.childNodes.count))
+        treat.setName(name: "treat-"+String(sceneView.scene.rootNode.childNodes.count))
 
         print("pushed:" + treat.getName())
         sceneView.scene.rootNode.addChildNode(treat.get())
+        //lastTreat = treat
         treatStack.push(treat)
+        totalTreats += 1
         
         //make buddy move to sphere
         let moveSequence = globalBuddyNode.moveBuddyTo(node: treat)
         globalBuddyNode.get().runAction(moveSequence, completionHandler: walkDone)
+     
         
     }
     
     func walkDone() {
         let poppedTreat = treatStack.pop()
+        print("popped:" + (poppedTreat?.getName())!)
         poppedTreat?.get().removeFromParentNode()
+        totalTreats -= 1
+        
+        if treatStack.count != totalTreats {
+            print("we have a problem")
+            print (totalTreats)
+            print (treatStack.count)
+        }
+        else {
+            print("we're good")
+        }
+        
         
         
         //if queue is not empty, walk to that one next
         if treatStack.count > 0 {
-            print("popped:" + (poppedTreat?.getName())!)
             print ("lets take care of the others")
             
             //make buddy move to sphere
-            let moveSequence = globalBuddyNode.moveBuddyTo(node: poppedTreat!)
+            let moveSequence = globalBuddyNode.moveBuddyTo(node: treatStack.top!)
             globalBuddyNode.get().runAction(moveSequence, completionHandler: walkDone)
         }
         else {
@@ -86,9 +139,56 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    
+    @objc func throwBall(withGestureRecognizer sender: UIPanGestureRecognizer) {
+        
+        if (sender.state == UIGestureRecognizerState.began) {
+            print("swipe recognized")
+            
+            swipeCoor = sender.location(in: self.view)
+            latestTranslatePos = swipeCoor
+        }
+        else if (sender.state == UIGestureRecognizerState.ended) {
+            let stopLocation = sender.location(in: self.view);
+            let dx = stopLocation.x - swipeCoor.x
+            let dy = stopLocation.y - swipeCoor.y
+            let distance = sqrt(dx*dx + dy*dy)
+            
+            //let projectedOrigin = sceneView.projectPoint(SCNVector3Zero)
+            let vpWithDepth = SCNVector3Make(Float(stopLocation.x), Float(stopLocation.y), 0)
+            let scenePoint = sceneView.unprojectPoint(vpWithDepth)
+            
+            let ball = Ball(x:scenePoint.x, y:scenePoint.y, z:0)
+            
+            sceneView.scene.rootNode.addChildNode(ball.get())
+            ball.applyForce(f: SCNVector3(dx, -1*dy, -0.5*distance))
+            
+            
+        }
+    }
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        print("-> didBeginContact")
+    }
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didUpdate contact: SCNPhysicsContact) {
+        print("-> didUpdateContact")
+    }
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
+        print("-> didEndContact")
+    }
+    
+    
     func addTapGestureToSceneView() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addObjectToSceneView(withGestureRecognizer:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func addSwipeGestureToSceneView() {
+        let swipeGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(throwBall(withGestureRecognizer:)))
+        //swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirection.up
+        sceneView.addGestureRecognizer(swipeGestureRecognizer)
     }
     
     
@@ -127,14 +227,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     /*
      * Touch detection
-     */
+ 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        /*
         let location = touches.first!.location(in: sceneView)
         
         // Let's test if a 3D Object was touch
         var hitTestOptions = [SCNHitTestOption: Any]()
         hitTestOptions[SCNHitTestOption.boundingBoxOnly] = true
         let hitResults: [SCNHitTestResult]  = sceneView.hitTest(location, options: hitTestOptions)
+        print("hit result count: " + String(hitResults.count))
         
         if hitResults.first != nil {
             if hitResults.first?.node.name == "Bubble" {
@@ -150,9 +252,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 addActionButtons()
                 return
             }
+            //TODO: VERY HACKY, FIX THIS LATER
+            else if (hitResults.first?.node.name)?.range(of: "treat") != nil || (hitResults.first?.node.parent?.name)?.range(of: "treat") != nil {
+                //globalBuddyNode.get().removeAllActions()
+                hitResults.first?.node.parent?.removeFromParentNode()
+                return
+            } else if (hitResults.first?.node.name == "plane") {
+                globalBuddyNode.get().removeAllActions()
+                
+                
+                let translation = hitResults.first?.worldCoordinates
+                let x = translation?.x
+                let y = translation?.y
+                let z = translation?.z
+                
+                let treat = Treat(x:x!, y:y!, z:z!)
+                treat.setName(name: "treat-"+String(sceneView.scene.rootNode.childNodes.count))
+                
+                print("pushed:" + treat.getName())
+                sceneView.scene.rootNode.addChildNode(treat.get())
+                treatStack.push(treat)
+                
+                //make buddy move to sphere
+                let moveSequence = globalBuddyNode.moveBuddyTo(node: treat)
+                globalBuddyNode.get().runAction(moveSequence, completionHandler: walkDone)
+            }
         } else {
         }
+ */
     }
+ 
+   */
 
     //function used to pass information through segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -236,22 +366,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         
         let width = CGFloat(planeAnchor.extent.x)
-        let height = CGFloat(planeAnchor.extent.z)
-        let plane = SCNPlane(width: width, height: height)
+        let length = CGFloat(planeAnchor.extent.z)
+        let planeHeight = CGFloat(0.01)
+        
+        let plane = SCNBox(width: width, height:planeHeight, length:length, chamferRadius: 0)
         
         plane.materials.first?.diffuse.contents = UIColor.orange //Change this to clear for the future
-        
         let planeNode = SCNNode(geometry: plane)
+        
+        
         
         let x = CGFloat(planeAnchor.center.x)
         let y = CGFloat(planeAnchor.center.y)
         let z = CGFloat(planeAnchor.center.z)
         planeNode.position = SCNVector3(x,y,z)
-        planeNode.eulerAngles.x = -.pi / 2
+        
+        planeNode.physicsBody = SCNPhysicsBody(type:.kinematic, shape: SCNPhysicsShape(geometry:plane, options:nil))
+        planeNode.physicsBody?.categoryBitMask = Int(CategoryMask.plane.rawValue)
+        planeNode.physicsBody?.collisionBitMask = Int(CategoryMask.ball.rawValue) | Int(CategoryMask.plane.rawValue)
+        
+        //self.node.physicsBody?.categoryBitMask = CollisionCategory.plane.rawValue
+        //self.node.physicsBody?.collisionBitMask = CollisionCategory.ball.rawValue | CollisionCategory.plane.rawValue
         
         // TODO: now it only
         if (globalBuddyNode == nil) {
-            node.name = "plane"
+            planeNode.name = "plane"
             node.addChildNode(planeNode)
         
             // Load all the DAE animations
@@ -271,18 +410,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as?  ARPlaneAnchor,
             let planeNode = node.childNodes.first,
-            let plane = planeNode.geometry as? SCNPlane
+            let plane = planeNode.geometry as? SCNBox
             else { return }
         
         let width = CGFloat(planeAnchor.extent.x)
-        let height = CGFloat(planeAnchor.extent.z)
+        let length = CGFloat(planeAnchor.extent.z)
         plane.width = width
-        plane.height = height
+        plane.length = length
         
         let x = CGFloat(planeAnchor.center.x)
         let y = CGFloat(planeAnchor.center.y)
         let z = CGFloat(planeAnchor.center.z)
         planeNode.position = SCNVector3(x, y, z)
+        
+        planeNode.physicsBody = SCNPhysicsBody(type:.kinematic, shape: SCNPhysicsShape(geometry:plane, options:nil))
+        planeNode.physicsBody?.categoryBitMask = Int(CategoryMask.plane.rawValue)
+        planeNode.physicsBody?.collisionBitMask = Int(CategoryMask.ball.rawValue) | Int(CategoryMask.plane.rawValue)
+
     }
 
     

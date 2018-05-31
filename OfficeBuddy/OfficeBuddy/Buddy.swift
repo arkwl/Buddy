@@ -49,14 +49,19 @@ class Buddy {
     }
     
     func moveBuddyTo(node: Treat) -> SCNAction{
-        let forward = SCNAction.move(to: (node.getPosition()), duration: 3)
-        forward.timingMode = .easeInEaseOut
-        
         let buddyPosition = self.node.position
         let dx = node.getDistanceX(origin: buddyPosition.x)
         let dz = node.getDistanceZ(origin: buddyPosition.z)
-        
         let y_angle = atan2(dx, dz)
+        
+        let treatPosition = node.getPosition()
+        let h = node.radius * cos(y_angle)
+        let w = node.radius * sin(y_angle)
+        
+        
+        //TODO:// IM ONTO SOMETHING WITH THIS, IMPROVE IT LATER
+        let forward = SCNAction.move(to: SCNVector3(x: treatPosition.x+h, y: treatPosition.y, z:treatPosition.z+w), duration: 3)
+        forward.timingMode = .easeInEaseOut
         
         let rotation = SCNAction.rotateTo(x: 0, y: CGFloat(y_angle), z: 0, duration: 1)
         rotation.timingMode = .easeInEaseOut
