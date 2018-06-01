@@ -55,7 +55,7 @@ class ARController {
         
         let plane = SCNBox(width: width, height:planeHeight, length:length, chamferRadius: 0)
         
-        plane.materials.first?.diffuse.contents = UIColor.orange //Change this to clear for the future
+        plane.materials.first?.diffuse.contents = UIColor.orange //Change this to clear
         let planeNode = SCNNode(geometry: plane)
         let x = CGFloat(anchor.center.x)
         let y = CGFloat(anchor.center.y)
@@ -104,11 +104,15 @@ class ARController {
     func walkDone() {
         let poppedTreat = treatStack.pop()
         poppedTreat?.get().removeFromParentNode()
-    
+        
         if treatStack.count > 0 {
             let moveSequence = buddy.moveBuddyTo(node: treatStack.top!)
             buddy.get().runAction(moveSequence, completionHandler: walkDone)
         }
+    }
+    
+    func buddyLookAtCamera(){
+        print("what's up man? do you want to play or talk>?")
     }
     
     // TODO: Retouch this!!

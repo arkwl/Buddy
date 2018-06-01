@@ -31,8 +31,8 @@ class  Ball {
         //sphereNode.addChildNode(SCNNode(geometry: sphere))
         
         self.radius = 0.05
-        //sphere = SCNSphere(radius: CGFloat(self.radius))
-        let sphere = SCNBox(width: 0.06, height: 0.06, length: 0.06, chamferRadius: 1.0)
+        let sphere = SCNSphere(radius: CGFloat(self.radius))
+        //let sphere = SCNBox(width: 0.06, height: 0.06, length: 0.06, chamferRadius: 1.0)
         sphere.firstMaterial?.diffuse.contents = UIColor.green
         sphereNode.addChildNode(SCNNode(geometry: sphere))
         
@@ -44,7 +44,7 @@ class  Ball {
         //self.node.physicsBody?.categoryBitMask = SCNPhysicsCollisionCategory.
         self.node.physicsBody?.categoryBitMask = Int(CategoryMask.ball.rawValue)
         self.node.physicsBody?.collisionBitMask = Int(CategoryMask.ball.rawValue) | Int(CategoryMask.plane.rawValue)
-        self.node.physicsBody?.friction = 1
+        self.node.physicsBody?.friction = 3
         self.node.physicsBody?.mass = 2.0
         
     }

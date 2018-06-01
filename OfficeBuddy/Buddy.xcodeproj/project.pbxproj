@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		B119A06420B4A8E700F903C1 /* Treat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119A06320B4A8E700F903C1 /* Treat.swift */; };
 		B119A06620B4B53B00F903C1 /* Buddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119A06520B4B53B00F903C1 /* Buddy.swift */; };
-		B119A06820B7D24400F903C1 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119A06720B7D24400F903C1 /* Ball.swift */; };
 		B127F00E20C02F2000A9E31A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127F00D20C02F2000A9E31A /* Constants.swift */; };
+		B1646C6D20C1C93500B8A491 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1646C6C20C1C93400B8A491 /* Ball.swift */; };
+		B1646C6F20C1C94300B8A491 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1646C6E20C1C94300B8A491 /* Stack.swift */; };
 		B1B46EE720B2497900AD2E6E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B46EE620B2497900AD2E6E /* Queue.swift */; };
-		B1B46EE920B33B3400AD2E6E /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B46EE820B33B3400AD2E6E /* Stack.swift */; };
 		B1D8EF0320422B53005AB81D /* MessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D8EF0220422B53005AB81D /* MessageGenerator.swift */; };
 		B1D8EF05204263C0005AB81D /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B1D8EF04204263C0005AB81D /* data.json */; };
 		C51B4FCC2022BF5E004A521D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51B4FCB2022BF5E004A521D /* AppDelegate.swift */; };
@@ -48,10 +48,10 @@
 /* Begin PBXFileReference section */
 		B119A06320B4A8E700F903C1 /* Treat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treat.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B119A06520B4B53B00F903C1 /* Buddy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buddy.swift; sourceTree = "<group>"; };
-		B119A06720B7D24400F903C1 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		B127F00D20C02F2000A9E31A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B1646C6C20C1C93400B8A491 /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ball.swift; path = ../../BuddyV2/BuddyV2/Ball.swift; sourceTree = "<group>"; };
+		B1646C6E20C1C94300B8A491 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stack.swift; path = ../../BuddyV2/BuddyV2/Stack.swift; sourceTree = "<group>"; };
 		B1B46EE620B2497900AD2E6E /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		B1B46EE820B33B3400AD2E6E /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		B1D8EF0220422B53005AB81D /* MessageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGenerator.swift; sourceTree = "<group>"; };
 		B1D8EF04204263C0005AB81D /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		C51B4FC82022BF5E004A521D /* Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,9 +133,9 @@
 				C51B4FD92022BF5E004A521D /* Info.plist */,
 				C525AF2B20255388004CFED5 /* SKMultilineLabel.swift */,
 				B1D8EF0220422B53005AB81D /* MessageGenerator.swift */,
-				B1B46EE820B33B3400AD2E6E /* Stack.swift */,
+				B1646C6E20C1C94300B8A491 /* Stack.swift */,
 				B119A06320B4A8E700F903C1 /* Treat.swift */,
-				B119A06720B7D24400F903C1 /* Ball.swift */,
+				B1646C6C20C1C93400B8A491 /* Ball.swift */,
 				B119A06520B4B53B00F903C1 /* Buddy.swift */,
 				C51B4FCF2022BF5E004A521D /* ViewController.swift */,
 				B127F00D20C02F2000A9E31A /* Constants.swift */,
@@ -298,12 +298,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1646C6D20C1C93500B8A491 /* Ball.swift in Sources */,
+				B1646C6F20C1C94300B8A491 /* Stack.swift in Sources */,
 				C51B4FD02022BF5E004A521D /* ViewController.swift in Sources */,
 				B127F00E20C02F2000A9E31A /* Constants.swift in Sources */,
 				B119A06620B4B53B00F903C1 /* Buddy.swift in Sources */,
-				B119A06820B7D24400F903C1 /* Ball.swift in Sources */,
 				B1B46EE720B2497900AD2E6E /* Queue.swift in Sources */,
-				B1B46EE920B33B3400AD2E6E /* Stack.swift in Sources */,
 				B1D8EF0320422B53005AB81D /* MessageGenerator.swift in Sources */,
 				C51B4FCC2022BF5E004A521D /* AppDelegate.swift in Sources */,
 				C525AF32202AC803004CFED5 /* MessageViewController.swift in Sources */,
