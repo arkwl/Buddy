@@ -17,7 +17,7 @@ class Treat {
     let node: SCNNode
     let radius: Float
     
-    init(x: Float, y: Float, z:Float){
+    init(position: SCNVector3){
         
         let sphereNode = SCNNode()
         
@@ -32,7 +32,7 @@ class Treat {
         sphere.name = "invisibleTreat"
         sphereNode.addChildNode(SCNNode(geometry: sphere))
         
-        sphereNode.position = SCNVector3(x, y, z)
+        sphereNode.position = position
         sphereNode.name = "treatParent"
         self.node = sphereNode
     }

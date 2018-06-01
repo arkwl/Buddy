@@ -48,9 +48,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     @objc func addObjectToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
         
-        if (globalBuddyNode.get().hasActions){
-            //treatStack.push(lastTreat)
-        }
         globalBuddyNode.get().removeAllActions()
         
         

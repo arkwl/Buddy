@@ -15,6 +15,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet var actionButtons: [UIButton]!
+    
     var enviorment = ARController()
     
     override func viewDidLoad() {
@@ -22,12 +23,61 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = SCNScene()
         sceneView.scene.rootNode.name = "world"
         sceneView.showsStatistics = true
+        addTapGestureToSceneView()
+        addSwipeGestureToSceneView()
     }
+    
+    /* Gesture Regonizers for Scene View */
+    @objc func addTreatToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
+        let treat = enviorment.generateTreat(touch: recognizer, scene: sceneView)
+        if treat != nil {
+            sceneView.scene.rootNode.addChildNode((treat?.get())!)
+            //move buddy to treat
+            enviorment.buddyTreatInteraction(treat: treat!)
+        }
+    }
+    
+    @objc func throwBallInSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
+    }
+    
+    
+    
+    
+    /* UIKit Recongizers */
+    @IBAction func clickActionButton(_ sender: UIButton) {
+        let index = actionButtons.index(of: sender)
+        if index == 2 {
+            enviorment.mode = InteractionMode.defaultMode
+            //TODO: Other animations to make it clear that the user can now interact with Buddy
+        } else {
+            enviorment.mode = nil
+            //segue to other views
+        }
+    }
+    
+    func addTapGestureToSceneView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addTreatToSceneView(withGestureRecognizer:)))
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func addSwipeGestureToSceneView() {
+        let swipeGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(throwBallInSceneView(withGestureRecognizer:)))
+        sceneView.addGestureRecognizer(swipeGestureRecognizer)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-        let planeNode = generatePlane(anchor: planeAnchor)
+        let planeNode = enviorment.generatePlane(anchor: planeAnchor)
         if enviorment.buddy == nil {
             node.name = "plane"
             node.addChildNode(planeNode)
@@ -44,23 +94,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
     }
-    
-    
-    
-    @IBAction func clickActionButton(_ sender: UIButton) {
-        let index = actionButtons.index(of: sender)
-        if index == 2 {
-            enviorment.mode = InteractionMode.defaultMode
-            //TODO: Other animations to make it clear that the user can now interact with Buddy
-        } else {
-            enviorment.mode = nil
-            //segue to other views
-        }
-    }
-    
-    
-    
-    
     
     
     

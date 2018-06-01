@@ -16,6 +16,8 @@
 		B127F07F20C0F07400A9E31A /* Treat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127F07C20C0F07400A9E31A /* Treat.swift */; };
 		B127F08020C0F07400A9E31A /* ARController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127F07D20C0F07400A9E31A /* ARController.swift */; };
 		B127F08920C0F41700A9E31A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B127F08820C0F41700A9E31A /* art.scnassets */; };
+		B1646C6220C1ACB200B8A491 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1646C6120C1ACB100B8A491 /* Stack.swift */; };
+		B1646C6620C1B65D00B8A491 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1646C6520C1B65D00B8A491 /* Ball.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		B127F07C20C0F07400A9E31A /* Treat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Treat.swift; sourceTree = "<group>"; };
 		B127F07D20C0F07400A9E31A /* ARController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARController.swift; sourceTree = "<group>"; };
 		B127F08820C0F41700A9E31A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		B1646C6120C1ACB100B8A491 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		B1646C6520C1B65D00B8A491 /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +66,8 @@
 		B127F03820C08D8600A9E31A /* BuddyV2 */ = {
 			isa = PBXGroup;
 			children = (
-				B127F07D20C0F07400A9E31A /* ARController.swift */,
-				B127F07B20C0F07300A9E31A /* Buddy.swift */,
-				B127F07C20C0F07400A9E31A /* Treat.swift */,
-				B127F03B20C08D8600A9E31A /* ViewController.swift */,
+				B1646C6B20C1C0AA00B8A491 /* Controllers */,
+				B1646C6820C1B67500B8A491 /* Objects */,
 				B127F03D20C08D8600A9E31A /* Main.storyboard */,
 				B127F04020C08D8700A9E31A /* Assets.xcassets */,
 				B127F04220C08D8700A9E31A /* LaunchScreen.storyboard */,
@@ -74,6 +76,26 @@
 				B127F08820C0F41700A9E31A /* art.scnassets */,
 			);
 			path = BuddyV2;
+			sourceTree = "<group>";
+		};
+		B1646C6820C1B67500B8A491 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				B127F07B20C0F07300A9E31A /* Buddy.swift */,
+				B1646C6520C1B65D00B8A491 /* Ball.swift */,
+				B127F07C20C0F07400A9E31A /* Treat.swift */,
+				B1646C6120C1ACB100B8A491 /* Stack.swift */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		B1646C6B20C1C0AA00B8A491 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B127F03B20C08D8600A9E31A /* ViewController.swift */,
+				B127F07D20C0F07400A9E31A /* ARController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +174,8 @@
 				B127F07E20C0F07400A9E31A /* Buddy.swift in Sources */,
 				B127F07F20C0F07400A9E31A /* Treat.swift in Sources */,
 				B127F03A20C08D8600A9E31A /* AppDelegate.swift in Sources */,
+				B1646C6220C1ACB200B8A491 /* Stack.swift in Sources */,
+				B1646C6620C1B65D00B8A491 /* Ball.swift in Sources */,
 				B127F08020C0F07400A9E31A /* ARController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
