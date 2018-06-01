@@ -12,7 +12,10 @@
 		B127F03F20C08D8600A9E31A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B127F03D20C08D8600A9E31A /* Main.storyboard */; };
 		B127F04120C08D8700A9E31A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B127F04020C08D8700A9E31A /* Assets.xcassets */; };
 		B127F04420C08D8700A9E31A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B127F04220C08D8700A9E31A /* LaunchScreen.storyboard */; };
-		B127F04C20C0912500A9E31A /* InteractiveARController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127F04B20C0912500A9E31A /* InteractiveARController.swift */; };
+		B127F07E20C0F07400A9E31A /* Buddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127F07B20C0F07300A9E31A /* Buddy.swift */; };
+		B127F07F20C0F07400A9E31A /* Treat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127F07C20C0F07400A9E31A /* Treat.swift */; };
+		B127F08020C0F07400A9E31A /* ARController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127F07D20C0F07400A9E31A /* ARController.swift */; };
+		B127F08920C0F41700A9E31A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B127F08820C0F41700A9E31A /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +26,10 @@
 		B127F04020C08D8700A9E31A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B127F04320C08D8700A9E31A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B127F04520C08D8700A9E31A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B127F04B20C0912500A9E31A /* InteractiveARController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveARController.swift; sourceTree = "<group>"; };
+		B127F07B20C0F07300A9E31A /* Buddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buddy.swift; sourceTree = "<group>"; };
+		B127F07C20C0F07400A9E31A /* Treat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Treat.swift; sourceTree = "<group>"; };
+		B127F07D20C0F07400A9E31A /* ARController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARController.swift; sourceTree = "<group>"; };
+		B127F08820C0F41700A9E31A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +62,16 @@
 		B127F03820C08D8600A9E31A /* BuddyV2 */ = {
 			isa = PBXGroup;
 			children = (
+				B127F07D20C0F07400A9E31A /* ARController.swift */,
+				B127F07B20C0F07300A9E31A /* Buddy.swift */,
+				B127F07C20C0F07400A9E31A /* Treat.swift */,
 				B127F03B20C08D8600A9E31A /* ViewController.swift */,
-				B127F04B20C0912500A9E31A /* InteractiveARController.swift */,
 				B127F03D20C08D8600A9E31A /* Main.storyboard */,
 				B127F04020C08D8700A9E31A /* Assets.xcassets */,
 				B127F04220C08D8700A9E31A /* LaunchScreen.storyboard */,
 				B127F04520C08D8700A9E31A /* Info.plist */,
 				B127F03920C08D8600A9E31A /* AppDelegate.swift */,
+				B127F08820C0F41700A9E31A /* art.scnassets */,
 			);
 			path = BuddyV2;
 			sourceTree = "<group>";
@@ -126,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B127F04420C08D8700A9E31A /* LaunchScreen.storyboard in Resources */,
+				B127F08920C0F41700A9E31A /* art.scnassets in Resources */,
 				B127F04120C08D8700A9E31A /* Assets.xcassets in Resources */,
 				B127F03F20C08D8600A9E31A /* Main.storyboard in Resources */,
 			);
@@ -139,8 +149,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B127F03C20C08D8600A9E31A /* ViewController.swift in Sources */,
+				B127F07E20C0F07400A9E31A /* Buddy.swift in Sources */,
+				B127F07F20C0F07400A9E31A /* Treat.swift in Sources */,
 				B127F03A20C08D8600A9E31A /* AppDelegate.swift in Sources */,
-				B127F04C20C0912500A9E31A /* InteractiveARController.swift in Sources */,
+				B127F08020C0F07400A9E31A /* ARController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
