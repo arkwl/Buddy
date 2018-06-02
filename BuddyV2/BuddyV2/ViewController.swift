@@ -15,6 +15,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet var actionButtons: [UIButton]!
+    @IBOutlet weak var speechBubble: UITextView!
+    
     
     var enviorment = ARController()
     
@@ -26,6 +28,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         sceneView.scene = SCNScene()
         sceneView.scene.rootNode.name = "world"
         sceneView.showsStatistics = true
+        
         addTapGestureToSceneView()
         addSwipeGestureToSceneView()
     }
@@ -137,6 +140,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             //activeAnchor = planeAnchor
         }
         
+    }
+    
+    @IBAction func returnToHomeView(_ segue: UIStoryboardSegue) {
     }
     
     
