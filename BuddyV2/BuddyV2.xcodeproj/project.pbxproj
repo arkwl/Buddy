@@ -24,6 +24,8 @@
 		B18B400B20C5CDEC00B749F3 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B18B400A20C5CDEC00B749F3 /* Podfile */; };
 		B18B400E20C5D1EF00B749F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B18B400D20C5D1EF00B749F3 /* GoogleService-Info.plist */; };
 		B18B401020C5D57800B749F3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B400F20C5D57800B749F3 /* Constants.swift */; };
+		B18B401420C7539C00B749F3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B401320C7539C00B749F3 /* LoginViewController.swift */; };
+		B18B401620C770DC00B749F3 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B401520C770DC00B749F3 /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		B18B400C20C5CF9500B749F3 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		B18B400D20C5D1EF00B749F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B18B400F20C5D57800B749F3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B18B401320C7539C00B749F3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B18B401520C770DC00B749F3 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		C41DA0EC63B3C387FD606823 /* Pods_BuddyV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuddyV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,6 +130,8 @@
 				B127F07D20C0F07400A9E31A /* ARController.swift */,
 				B18B400620C2400700B749F3 /* UserController.swift */,
 				B18B400820C5CB7E00B749F3 /* ChatViewController.swift */,
+				B18B401320C7539C00B749F3 /* LoginViewController.swift */,
+				B18B401520C770DC00B749F3 /* CreateAccountViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18B401620C770DC00B749F3 /* CreateAccountViewController.swift in Sources */,
 				B127F03C20C08D8600A9E31A /* ViewController.swift in Sources */,
 				B127F07E20C0F07400A9E31A /* Buddy.swift in Sources */,
 				B18B400720C2400700B749F3 /* UserController.swift in Sources */,
@@ -274,6 +281,7 @@
 				B1646C6620C1B65D00B8A491 /* Ball.swift in Sources */,
 				B18B400920C5CB7E00B749F3 /* ChatViewController.swift in Sources */,
 				B127F08020C0F07400A9E31A /* ARController.swift in Sources */,
+				B18B401420C7539C00B749F3 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
