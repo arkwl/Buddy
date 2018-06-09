@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class CreateAccountViewController: UIViewController {
-
+    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
@@ -34,10 +34,13 @@ class CreateAccountViewController: UIViewController {
                     print("You have successfully signed up")
                     let ref = Constants.refs.databaseUsers.childByAutoId()
                     let user = ["email": email]
-                    
                     ref.setValue(user)
-                    self.dismiss(animated: false, completion: nil)
-                    self.navigationController?.popViewController(animated: true)
+                    //self.dismiss(animated: false, completion: nil)
+                    //self.navigationController?.popViewController(animated: true)
+                    
+                    let appDelegateTemp = UIApplication.shared.delegate as? AppDelegate
+                    appDelegateTemp?.window?.rootViewController = UIStoryboard(name: "MainViewController", bundle: Bundle.main).instantiateInitialViewController()
+
                 } else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                     

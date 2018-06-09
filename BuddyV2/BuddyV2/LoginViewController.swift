@@ -24,6 +24,9 @@ class LoginViewController: UIViewController {
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                     if error == nil {
                         print("You have successfully signed in")
+                        let appDelegateTemp = UIApplication.shared.delegate as? AppDelegate
+                        
+                        appDelegateTemp?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
                         // go to the main contoller view
                     } else {
                         let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
