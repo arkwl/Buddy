@@ -20,6 +20,30 @@
 		B1646C6220C1ACB200B8A491 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1646C6120C1ACB100B8A491 /* Stack.swift */; };
 		B1646C6620C1B65D00B8A491 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1646C6520C1B65D00B8A491 /* Ball.swift */; };
 		B188369920CC58FD0005F58D /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B188369820CC58FD0005F58D /* SupportViewController.swift */; };
+		B18836A720CCCA2F0005F58D /* ToneAnalyzerV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B188369B20CCCA2F0005F58D /* ToneAnalyzerV3.framework */; };
+		B18836A820CCCA2F0005F58D /* VisualRecognitionV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B188369C20CCCA2F0005F58D /* VisualRecognitionV3.framework */; };
+		B18836A920CCCA2F0005F58D /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B188369D20CCCA2F0005F58D /* Starscream.framework */; };
+		B18836AA20CCCA2F0005F58D /* AssistantV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B188369E20CCCA2F0005F58D /* AssistantV1.framework */; };
+		B18836AB20CCCA2F0005F58D /* DiscoveryV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B188369F20CCCA2F0005F58D /* DiscoveryV1.framework */; };
+		B18836AC20CCCA300005F58D /* ConversationV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18836A020CCCA2F0005F58D /* ConversationV1.framework */; };
+		B18836AD20CCCA300005F58D /* LanguageTranslatorV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18836A120CCCA2F0005F58D /* LanguageTranslatorV2.framework */; };
+		B18836AE20CCCA300005F58D /* NaturalLanguageClassifierV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18836A220CCCA2F0005F58D /* NaturalLanguageClassifierV1.framework */; };
+		B18836AF20CCCA300005F58D /* PersonalityInsightsV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18836A320CCCA2F0005F58D /* PersonalityInsightsV3.framework */; };
+		B18836B020CCCA300005F58D /* SpeechToTextV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18836A420CCCA2F0005F58D /* SpeechToTextV1.framework */; };
+		B18836B120CCCA300005F58D /* NaturalLanguageUnderstandingV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18836A520CCCA2F0005F58D /* NaturalLanguageUnderstandingV1.framework */; };
+		B18836B220CCCA300005F58D /* TextToSpeechV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18836A620CCCA2F0005F58D /* TextToSpeechV1.framework */; };
+		B18836B420CCCB490005F58D /* AssistantV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B188369E20CCCA2F0005F58D /* AssistantV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836B520CCCB490005F58D /* ConversationV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B18836A020CCCA2F0005F58D /* ConversationV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836B620CCCB490005F58D /* DiscoveryV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B188369F20CCCA2F0005F58D /* DiscoveryV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836B720CCCB490005F58D /* LanguageTranslatorV2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B18836A120CCCA2F0005F58D /* LanguageTranslatorV2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836B820CCCB490005F58D /* NaturalLanguageClassifierV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B18836A220CCCA2F0005F58D /* NaturalLanguageClassifierV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836B920CCCB490005F58D /* NaturalLanguageUnderstandingV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B18836A520CCCA2F0005F58D /* NaturalLanguageUnderstandingV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836BA20CCCB490005F58D /* PersonalityInsightsV3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B18836A320CCCA2F0005F58D /* PersonalityInsightsV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836BB20CCCB490005F58D /* SpeechToTextV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B18836A420CCCA2F0005F58D /* SpeechToTextV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836BC20CCCB490005F58D /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B188369D20CCCA2F0005F58D /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836BD20CCCB490005F58D /* TextToSpeechV1.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B18836A620CCCA2F0005F58D /* TextToSpeechV1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836BE20CCCB490005F58D /* ToneAnalyzerV3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B188369B20CCCA2F0005F58D /* ToneAnalyzerV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B18836BF20CCCB490005F58D /* VisualRecognitionV3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B188369C20CCCA2F0005F58D /* VisualRecognitionV3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B18B400720C2400700B749F3 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B400620C2400700B749F3 /* UserController.swift */; };
 		B18B400920C5CB7E00B749F3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B400820C5CB7E00B749F3 /* ChatViewController.swift */; };
 		B18B400B20C5CDEC00B749F3 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B18B400A20C5CDEC00B749F3 /* Podfile */; };
@@ -29,6 +53,30 @@
 		B18B401620C770DC00B749F3 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B401520C770DC00B749F3 /* CreateAccountViewController.swift */; };
 		B18B401820C8BA9800B749F3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B401720C8BA9800B749F3 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B18836B320CCCB310005F58D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B18836B420CCCB490005F58D /* AssistantV1.framework in CopyFiles */,
+				B18836B520CCCB490005F58D /* ConversationV1.framework in CopyFiles */,
+				B18836B620CCCB490005F58D /* DiscoveryV1.framework in CopyFiles */,
+				B18836B720CCCB490005F58D /* LanguageTranslatorV2.framework in CopyFiles */,
+				B18836B820CCCB490005F58D /* NaturalLanguageClassifierV1.framework in CopyFiles */,
+				B18836B920CCCB490005F58D /* NaturalLanguageUnderstandingV1.framework in CopyFiles */,
+				B18836BA20CCCB490005F58D /* PersonalityInsightsV3.framework in CopyFiles */,
+				B18836BB20CCCB490005F58D /* SpeechToTextV1.framework in CopyFiles */,
+				B18836BC20CCCB490005F58D /* Starscream.framework in CopyFiles */,
+				B18836BD20CCCB490005F58D /* TextToSpeechV1.framework in CopyFiles */,
+				B18836BE20CCCB490005F58D /* ToneAnalyzerV3.framework in CopyFiles */,
+				B18836BF20CCCB490005F58D /* VisualRecognitionV3.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6477D244F9F0D0C2BF4F79AB /* Pods-BuddyV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuddyV2.release.xcconfig"; path = "Pods/Target Support Files/Pods-BuddyV2/Pods-BuddyV2.release.xcconfig"; sourceTree = "<group>"; };
@@ -47,6 +95,18 @@
 		B1646C6120C1ACB100B8A491 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		B1646C6520C1B65D00B8A491 /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		B188369820CC58FD0005F58D /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		B188369B20CCCA2F0005F58D /* ToneAnalyzerV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ToneAnalyzerV3.framework; path = Carthage/Build/iOS/ToneAnalyzerV3.framework; sourceTree = SOURCE_ROOT; };
+		B188369C20CCCA2F0005F58D /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = SOURCE_ROOT; };
+		B188369D20CCCA2F0005F58D /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = SOURCE_ROOT; };
+		B188369E20CCCA2F0005F58D /* AssistantV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssistantV1.framework; path = Carthage/Build/iOS/AssistantV1.framework; sourceTree = SOURCE_ROOT; };
+		B188369F20CCCA2F0005F58D /* DiscoveryV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscoveryV1.framework; path = Carthage/Build/iOS/DiscoveryV1.framework; sourceTree = SOURCE_ROOT; };
+		B18836A020CCCA2F0005F58D /* ConversationV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ConversationV1.framework; path = Carthage/Build/iOS/ConversationV1.framework; sourceTree = SOURCE_ROOT; };
+		B18836A120CCCA2F0005F58D /* LanguageTranslatorV2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LanguageTranslatorV2.framework; path = Carthage/Build/iOS/LanguageTranslatorV2.framework; sourceTree = SOURCE_ROOT; };
+		B18836A220CCCA2F0005F58D /* NaturalLanguageClassifierV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NaturalLanguageClassifierV1.framework; path = Carthage/Build/iOS/NaturalLanguageClassifierV1.framework; sourceTree = SOURCE_ROOT; };
+		B18836A320CCCA2F0005F58D /* PersonalityInsightsV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersonalityInsightsV3.framework; path = Carthage/Build/iOS/PersonalityInsightsV3.framework; sourceTree = SOURCE_ROOT; };
+		B18836A420CCCA2F0005F58D /* SpeechToTextV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechToTextV1.framework; path = Carthage/Build/iOS/SpeechToTextV1.framework; sourceTree = SOURCE_ROOT; };
+		B18836A520CCCA2F0005F58D /* NaturalLanguageUnderstandingV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NaturalLanguageUnderstandingV1.framework; path = Carthage/Build/iOS/NaturalLanguageUnderstandingV1.framework; sourceTree = SOURCE_ROOT; };
+		B18836A620CCCA2F0005F58D /* TextToSpeechV1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TextToSpeechV1.framework; path = Carthage/Build/iOS/TextToSpeechV1.framework; sourceTree = SOURCE_ROOT; };
 		B18B400620C2400700B749F3 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		B18B400820C5CB7E00B749F3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		B18B400A20C5CDEC00B749F3 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -64,7 +124,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18836AD20CCCA300005F58D /* LanguageTranslatorV2.framework in Frameworks */,
+				B18836B020CCCA300005F58D /* SpeechToTextV1.framework in Frameworks */,
 				73E7A5133DAB898CE65FC714 /* Pods_BuddyV2.framework in Frameworks */,
+				B18836B220CCCA300005F58D /* TextToSpeechV1.framework in Frameworks */,
+				B18836AA20CCCA2F0005F58D /* AssistantV1.framework in Frameworks */,
+				B18836AF20CCCA300005F58D /* PersonalityInsightsV3.framework in Frameworks */,
+				B18836A920CCCA2F0005F58D /* Starscream.framework in Frameworks */,
+				B18836AC20CCCA300005F58D /* ConversationV1.framework in Frameworks */,
+				B18836A820CCCA2F0005F58D /* VisualRecognitionV3.framework in Frameworks */,
+				B18836B120CCCA300005F58D /* NaturalLanguageUnderstandingV1.framework in Frameworks */,
+				B18836AB20CCCA2F0005F58D /* DiscoveryV1.framework in Frameworks */,
+				B18836A720CCCA2F0005F58D /* ToneAnalyzerV3.framework in Frameworks */,
+				B18836AE20CCCA300005F58D /* NaturalLanguageClassifierV1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +154,7 @@
 		B127F02D20C08D8600A9E31A = {
 			isa = PBXGroup;
 			children = (
+				B188369A20CCC9530005F58D /* frameworks */,
 				B18B400A20C5CDEC00B749F3 /* Podfile */,
 				B18B400C20C5CF9500B749F3 /* Bridging-Header.h */,
 				B127F03820C08D8600A9E31A /* BuddyV2 */,
@@ -142,6 +215,25 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		B188369A20CCC9530005F58D /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B188369E20CCCA2F0005F58D /* AssistantV1.framework */,
+				B18836A020CCCA2F0005F58D /* ConversationV1.framework */,
+				B188369F20CCCA2F0005F58D /* DiscoveryV1.framework */,
+				B18836A120CCCA2F0005F58D /* LanguageTranslatorV2.framework */,
+				B18836A220CCCA2F0005F58D /* NaturalLanguageClassifierV1.framework */,
+				B18836A520CCCA2F0005F58D /* NaturalLanguageUnderstandingV1.framework */,
+				B18836A320CCCA2F0005F58D /* PersonalityInsightsV3.framework */,
+				B18836A420CCCA2F0005F58D /* SpeechToTextV1.framework */,
+				B188369D20CCCA2F0005F58D /* Starscream.framework */,
+				B18836A620CCCA2F0005F58D /* TextToSpeechV1.framework */,
+				B188369B20CCCA2F0005F58D /* ToneAnalyzerV3.framework */,
+				B188369C20CCCA2F0005F58D /* VisualRecognitionV3.framework */,
+			);
+			path = frameworks;
+			sourceTree = "<group>";
+		};
 		D2BC0C576B9024B79B55C751 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +255,7 @@
 				B127F03320C08D8600A9E31A /* Frameworks */,
 				B127F03420C08D8600A9E31A /* Resources */,
 				B429793DABC763E457435E49 /* [CP] Embed Pods Frameworks */,
+				B18836B320CCCB310005F58D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -436,6 +529,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YUW3JBUCLP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = BuddyV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,6 +553,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YUW3JBUCLP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = BuddyV2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -33,13 +33,13 @@ class CreateAccountViewController: UIViewController {
                 if error == nil {
                     print("You have successfully signed up")
                     let ref = Constants.refs.databaseUsers.childByAutoId()
-                    let user = ["email": email]
-                    ref.setValue(user)
+                    let userObject = ["uid": user?.uid, "email": user?.email]
+                    ref.setValue(userObject)
                     //self.dismiss(animated: false, completion: nil)
                     //self.navigationController?.popViewController(animated: true)
                     
                     let appDelegateTemp = UIApplication.shared.delegate as? AppDelegate
-                    appDelegateTemp?.window?.rootViewController = UIStoryboard(name: "MainViewController", bundle: Bundle.main).instantiateInitialViewController()
+                    appDelegateTemp?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()
 
                 } else {
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
