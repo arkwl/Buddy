@@ -16,7 +16,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet var actionButtons: [UIButton]!
     @IBOutlet weak var speechBubble: UITextView!
-    
+    @IBOutlet weak var uiView: UIView!
     
     var enviorment = ARController()
     
@@ -31,6 +31,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         addTapGestureToSceneView()
         addSwipeGestureToSceneView()
+        //uiView.tintColor = UIColor.black
     }
     
     /* Gesture Regonizers for Scene View */
@@ -51,6 +52,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         if enviorment.mode == nil {
             print("swipe decativated")
         } else {
+            //if ball exists in world, then delete it and generate a new one
+            //deleting it involves stopping all animations for Buddy
+            
+            if enviorment.ball != nil {
+                enviorment.ball.get().removeFromParentNode()
+            }
         
             if (sender.state == UIGestureRecognizerState.began) {
                 print("swipe active")
@@ -68,6 +75,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 let scenePoint = sceneView.unprojectPoint(vpWithDepth)
             
                 let ball = Ball(x:scenePoint.x, y:scenePoint.y, z:0)
+                enviorment.ball = ball
             
                 sceneView.scene.rootNode.addChildNode(ball.get())
                 ball.applyForce(f: SCNVector3(dx, -1*dy, -1*distance))
@@ -136,6 +144,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             
             sceneView.scene.rootNode.addChildNode(enviorment.getBuddy())
             
+            //uiView.tintColor = UIColor.white
             //TODO: add anchor to the ARController
             //activeAnchor = planeAnchor
         }

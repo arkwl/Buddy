@@ -34,6 +34,7 @@ class ARController {
 
     public var buddy: Buddy!
     public var mode: InteractionMode!
+    public var ball: Ball!
     var treatStack = Stack<Treat>()
     
     init(){

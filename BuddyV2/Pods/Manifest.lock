@@ -52,6 +52,10 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SwiftInstagram (1.1.1):
+    - SwiftInstagram/Core (= 1.1.1)
+  - SwiftInstagram/Core (1.1.1)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -59,6 +63,8 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - JSQMessagesViewController
+  - SwiftInstagram (~> 1.1.1)
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -75,6 +81,8 @@ SPEC REPOS:
     - JSQSystemSoundPlayer
     - leveldb-library
     - nanopb
+    - SwiftInstagram
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Firebase: cc13dfab1038c8b45d7903e01fc690451d6d0b24
@@ -90,7 +98,9 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SwiftInstagram: 5f60415e522d1a7721073eb3a66f254a7c40fd63
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 8e1210dc51aeddb9b82edf7f2e34b86c7b12f306
+PODFILE CHECKSUM: 47d358045d966e8dc00e41bfd915015f08463e22
 
 COCOAPODS: 1.5.3

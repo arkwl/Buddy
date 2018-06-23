@@ -32,11 +32,9 @@ class CreateAccountViewController: UIViewController {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if error == nil {
                     print("You have successfully signed up")
-                    let ref = Constants.refs.databaseUsers.childByAutoId()
-                    let userObject = ["uid": user?.uid, "email": user?.email]
-                    ref.setValue(userObject)
-                    //self.dismiss(animated: false, completion: nil)
-                    //self.navigationController?.popViewController(animated: true)
+                    let ref = Constants.refs.databaseUsers
+                    let userObject = ["email": user?.email]
+                    ref.child((user?.uid)!).setValue(userObject)
                     
                     let appDelegateTemp = UIApplication.shared.delegate as? AppDelegate
                     appDelegateTemp?.window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController()

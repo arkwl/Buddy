@@ -31,8 +31,8 @@ class  Ball {
         //sphereNode.addChildNode(SCNNode(geometry: sphere))
         
         self.radius = 0.05
-        let sphere = SCNSphere(radius: CGFloat(self.radius))
-        //let sphere = SCNBox(width: 0.06, height: 0.06, length: 0.06, chamferRadius: 1.0)
+        //let sphere = SCNSphere(radius: CGFloat(self.radius))
+        let sphere = SCNBox(width: 0.05, height: 0.05, length: 0.05, chamferRadius: 1.0)
         sphere.firstMaterial?.diffuse.contents = UIColor.green
         sphereNode.addChildNode(SCNNode(geometry: sphere))
         

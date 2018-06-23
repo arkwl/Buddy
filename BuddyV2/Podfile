@@ -8,5 +8,7 @@ pod 'Firebase/Storage'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'JSQMessagesViewController'
+pod 'SwiftyJSON', '~> 4.0'
+pod 'SwiftInstagram', '~> 1.1.1'
 
 end

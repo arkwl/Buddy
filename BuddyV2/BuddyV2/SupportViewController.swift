@@ -14,71 +14,17 @@ import AssistantV1
 class SupportViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var userInput: UITextView!
+    @IBOutlet weak var buddyOutput: UITextView!
     var userId = String("")
+    var userKey = String("")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let user = Auth.auth().currentUser
         if let user = user {
-            let uid = user.uid
-            let email = user.email
+            self.userId = user.uid
         }
-        print(user?.email)
-        print(user?.uid)
         
-        let query = Constants.refs.databaseUsers
-        _ = query.observe(.childAdded, with: { [weak self] snapshot in
-            
-            if  let data        = snapshot.value as? [String: String],
-                let uid          = data["uid"],
-                let email        = data["email"]
-            {
-                self?.userId = uid
-                /*
-                if let message = JSQMessage(senderId: id, displayName: name, text: text)
-                {
-                    self?.messages.append(message)
-                    
-                    self?.finishReceivingMessage()
-                } */
-            }
-        })
-        
-        
-        //checking sentiment
-        let username = "5a046e48-f187-4177-805c-cfa721b322e0"
-        let password = "VfIEIb6hIrTF"
-        let version = "2018-06-10" // use today's date for the most recent version
-        let result: Any!
-        
-        let naturalLanguageUnderstanding = NaturalLanguageUnderstanding(username: username, password: password, version: version)
-        
-        let urlToAnalyze = "I am feeling great today, nothing can stand in my way. I just got a promotion at work!" //"www.wsj.com/news/markets"
-        //let features = Features(sentiment: SentimentOptions(document: true))
-        let features = Features(emotion: EmotionOptions(), entities: EntitiesOptions(), keywords: KeywordsOptions(), relations: RelationsOptions(), sentiment: SentimentOptions(document: true), categories: CategoriesOptions())
-        let parameters = Parameters(features: features, text: urlToAnalyze, returnAnalyzedText: true ) //check text
-        let failure = { (error: Error) in print(error) }
-        naturalLanguageUnderstanding.analyze(parameters: parameters, failure: failure) {
-            results in
-            
-            print(results)
-            
-            
-            
-            
-            
-            /*
-            let score = results.sentiment?.document?.score
-            var sentimentValue = "positive"
-            if (score! < 0.0) {
-                sentimentValue = "negative"
-            } else if (score! == 0.0) {
-                sentimentValue = "neutral"
-            }
-            NSLog("!!!!!!!!!!!!!! result: " + results.sentiment.debugDescription)
-            print(sentimentValue)
-            */
-        }
         // Do any additional setup after loading the view.
     }
 
@@ -112,6 +58,69 @@ class SupportViewController: UIViewController, UITextViewDelegate {
             let ref = Constants.refs.databaseMessages.childByAutoId()
             let message = ["uid": self.userId, "text": userInput.text!]
             ref.setValue(message)
+            
+            //checking sentiment
+            let username = "5a046e48-f187-4177-805c-cfa721b322e0"
+            let password = "VfIEIb6hIrTF"
+            let version = "2018-06-10" // use today's date for the most recent version
+            
+            let naturalLanguageUnderstanding = NaturalLanguageUnderstanding(username: username, password: password, version: version)
+            
+            //let textToAnalyze = "I am feeling great today, nothing can stand in my way. I just got a promotion at work!"
+            let textToAnalyze = userInput.text!
+            let features = Features(emotion: EmotionOptions(), entities: EntitiesOptions(), keywords: KeywordsOptions(), relations: RelationsOptions(), sentiment: SentimentOptions(document: true), categories: CategoriesOptions())
+            let parameters = Parameters(features: features, text: textToAnalyze, returnAnalyzedText: true ) //check text
+            let failure = { (error: Error) in print(error) }
+            var score = 0.0
+            
+            naturalLanguageUnderstanding.analyze(parameters: parameters, failure: failure) {
+                results in
+                
+                score = (results.sentiment?.document?.score)!
+                let ref = Constants.refs.databaseUsers
+                ref.queryEqual(toValue: self.userId)
+                
+                _ = ref.observeSingleEvent(of: .value, with: { snapshot in
+                    
+                    var statement: String!
+                    
+                    if (score > 0.0) {
+                        statement = "gratitudes"
+                    } else if (score < 0.0){
+                        statement = "problems"
+                    }
+                    
+                    if  let data        = snapshot.value as? NSDictionary {
+                        let userObject = data[self.userId] as! NSDictionary
+                        var gratitudes = NSArray()
+                        
+                        if (userObject["\(statement!)"] != nil) {
+                            gratitudes = userObject["\(statement!)"] as! NSArray
+                        }
+                        gratitudes = gratitudes.adding(textToAnalyze) as NSArray
+                        
+                        let childUpdates = ["/\(self.userId)/\(statement!)/": gratitudes]
+                        ref.updateChildValues(childUpdates)
+                    }
+                    
+                })
+                
+                if (score > 0.0) {
+                    //use model to react positively
+                    DispatchQueue.main.async() {
+                        self.buddyOutput.text = "That's so great!"
+                    }
+                    
+                } else if (score < 0.0){
+                    //use model to  figure out what to say in response
+                    //bring back positive thing from the past
+                    DispatchQueue.main.async() {
+                        self.buddyOutput.text = "Im so sorry, have hope!"
+                    }
+                }
+                
+                
+            }
             
             return false
         }
